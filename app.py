@@ -53,13 +53,13 @@ def max_left_handed_in_country():
     df = read_csv()
     df = remove_null(df, ['Batting_Hand', 'Country'], 1)
     d = {k: v.value_counts(sort=False).to_dict() for k, v in df.groupby('Country', sort=False)['Batting_Hand']}
-    max = 0
+    max_num = 0
     country = ''
     for k1, v1 in d.items():
-        if v1.get('Left_Hand') is not None and max < v1.get('Left_Hand'):
-            max = v1.get('Left_Hand')
+        if v1.get('Left_Hand') is not None and max_num < v1.get('Left_Hand'):
+            max_num = v1.get('Left_Hand')
             country = k1
-    return "{} has max number of {} left hand batsmen.".format(country, max)
+    return "{} has max number of {} left hand batsmen.".format(country, max_num)
 
 
 @app.route('/country-null')
